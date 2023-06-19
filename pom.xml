@@ -14,4 +14,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>1.0</id>
+            <name>PacNetAPI</name>
+            <url>https://github.com/CrafterLP2007/PacNetAPI</url>
+        </repository>
+    </distributionManagement>
+
 </project>

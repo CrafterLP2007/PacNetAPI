@@ -47,4 +47,4 @@ jobs:
         -Dfile=target/${{ env.NAME }}-${{ env.VERSION }}.jar \
         -DgeneratePom=true \
         -DupdateReleaseInfo=true \
-        -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI/"
+        -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI-Dependency/"

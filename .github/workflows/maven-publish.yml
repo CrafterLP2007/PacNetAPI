@@ -30,12 +30,12 @@ jobs:
     
     - name: Remove old Nexus release
       run: |
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.md5
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.sha1
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.md5
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.sha1
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.md5"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.sha1"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.md5"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.sha1"
         
     - name: Nexus Repo Publish
       run: |
@@ -47,4 +47,5 @@ jobs:
         -Dfile=target/${{ env.NAME }}-${{ env.VERSION }}.jar \
         -DgeneratePom=true \
         -DupdateReleaseInfo=true \
-        -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI/"
+        -DrepositoryId=nexus \
+        -Durl="https://repo.crafterlp.de/repository/PacNetAPI/"

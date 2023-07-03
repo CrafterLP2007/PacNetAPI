@@ -37,6 +37,9 @@ jobs:
         curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.md5"
         curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.sha1"
         
+    - name: List Files
+      run: ls target/
+        
     - name: Nexus Repo Publish
       run: |
         mvn deploy:deploy-file \

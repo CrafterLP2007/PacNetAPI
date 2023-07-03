@@ -19,7 +19,7 @@ jobs:
         cache: maven
         
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -X
         
     - name: Set env variable
       run: |
@@ -47,4 +47,4 @@ jobs:
         -Dfile=target/${{ env.NAME }}-${{ env.VERSION }}.jar \
         -DgeneratePom=true \
         -DupdateReleaseInfo=true \
-        -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI/"
+        -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI-Dependency/"

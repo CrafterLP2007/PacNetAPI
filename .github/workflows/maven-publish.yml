@@ -27,9 +27,6 @@ jobs:
           echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: List Files
       run: ls target/
-
-    - name: Remove useless files
-      run: rm target/original*
     
     - name: Remove old Nexus release
       run: |

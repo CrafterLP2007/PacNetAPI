@@ -40,12 +40,11 @@ jobs:
     - name: Nexus Repo Publish
       run: |
         mvn deploy:deploy-file \
-        -DgroupId=de.crafterlp \
+        -DgroupId=eu.zonecraft \
         -DartifactId=${{ env.NAME }} \
         -Dversion=${{ env.VERSION }} \
         -Dpackaging=jar \
         -Dfile=target/${{ env.NAME }}-${{ env.VERSION }}.jar \
         -DgeneratePom=true \
         -DupdateReleaseInfo=true \
-        -DrepositoryId=nexus \
         -Durl="https://${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}@repo.crafterlp.de/repository/PacNetAPI-Dependency/"

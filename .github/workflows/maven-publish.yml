@@ -22,9 +22,21 @@ jobs:
       run: mvn -B package --file pom.xml
         
     - name: Set env variable
+      env:
+        NAME: ${{ steps.set-name.outputs.name }}
+        VERSION: ${{ steps.set-version.outputs.version }}
       run: |
-          echo "NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
-          echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+        echo "name=${NAME}" >> $GITHUB_ENV
+        echo "version=${VERSION}" >> $GITHUB_ENV
+
+    - id: set-name
+      run: |
+        echo "::set-output name=name::$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)"
+
+    - id: set-version
+      run: |
+        echo "::set-output name=version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+
     - name: List Files
       run: ls target/
 

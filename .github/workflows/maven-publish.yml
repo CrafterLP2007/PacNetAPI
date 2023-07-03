@@ -40,7 +40,7 @@ jobs:
     - name: Nexus Repo Publish
       run: |
         mvn deploy:deploy-file \
-        -DgroupId=eu.zonecraft \
+        -DgroupId=de.crafterlp \
         -DartifactId=${{ env.NAME }} \
         -Dversion=${{ env.VERSION }} \
         -Dpackaging=jar \

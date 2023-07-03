@@ -19,7 +19,7 @@ jobs:
         cache: maven
         
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -X
+      run: mvn -B package --file pom.xml
         
     - name: Set env variable
       run: |
@@ -27,15 +27,18 @@ jobs:
           echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
     - name: List Files
       run: ls target/
+
+    - name: Remove useless files
+      run: rm target/original*
     
     - name: Remove old Nexus release
       run: |
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar"
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.md5"
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.sha1"
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom"
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.md5"
-        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent "https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.sha1"
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.md5
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.jar.sha1
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.md5
+        curl -v --request DELETE  --user "${{ secrets.USERNAME }}:${{ secrets.PASSWORD }}"  --silent https://repo.crafterlp.de/repository/PacNetAPI/de/crafterlp/PacNetAPI/${{ env.VERSION }}/${{ env.NAME }}-${{ env.VERSION }}.pom.sha1
         
     - name: List Files
       run: ls target/
